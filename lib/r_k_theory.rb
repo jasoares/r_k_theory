@@ -12,11 +12,8 @@ module RKTheory
   end
 end
 
-RKTheory::logger = Logger.new(STDOUT)
-RKTheory::logger.level = Logger::INFO
-
 require_relative 'r_k_theory/version'
 require_relative 'r_k_theory/engine'
 
-game = RKTheory::Engine.new
-game.run
+RKTheory::logger = Logger.new(STDOUT)
+RKTheory::logger.level = Logger::INFO
