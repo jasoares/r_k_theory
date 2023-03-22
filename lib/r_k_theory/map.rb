@@ -1,28 +1,13 @@
-require_relative 'tile'
+require_relative 'map_manager'
 
 module RKTheory
   class Map
     attr_reader :grid
 
-    def initialize(level)
-      logger = Logger.new(STDOUT)
-      logger.level = Logger::INFO
+    def initialize(grid)
+      @grid = grid
+      RKTheory::logger.info("Level size #{@grid.size}x#{@grid[0].size}")
       @loading = true
-      rows = level.size
-      cols = level[0].size
-      logger.info("Level size #{rows}x#{cols}")
-      logger.info("Environment: #{ENV.inspect}")
-      r = 0
-      @grid = Array.new(rows) do |row|
-        c = 0
-        row = Array.new(cols) do |col|
-          tile = RKTheory::Tile::TYPES[level[r][c]].new(r, c)
-          c = c + 1
-          tile
-        end
-        r += 1
-        row
-      end
     end
 
     def render(window)

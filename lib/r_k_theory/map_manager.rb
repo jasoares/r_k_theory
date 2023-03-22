@@ -1,0 +1,14 @@
+require_relative 'tile'
+
+module RKTheory
+  class MapManager
+    def self.load(level)
+      file = File.open("#{__dir__}/maps/#{level}.lvl")
+      file.readlines.map.with_index do |line, row|
+        line.chomp.chars.map.with_index do |char, col|
+          Tile::TYPES[char].new(row, col)
+        end
+      end
+    end
+  end
+end

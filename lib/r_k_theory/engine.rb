@@ -8,9 +8,10 @@ module RKTheory
     attr_reader :window
 
     def initialize
-      @screen_size_y = RKTheory::LEVEL1.size
-      @screen_size_x = RKTheory::LEVEL1[0].size
-      @map = Map.new(RKTheory::LEVEL1)
+      grid = MapManager::load('level1')
+      @screen_size_y = grid.size
+      @screen_size_x = grid[0].size
+      @map = Map.new(grid)
       @bunny = Bunny.new(3, 2)
       @screen = init_screen
       start_color
