@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 require_relative 'tile'
 
 module RKTheory
+  # Implements helpers to read and load level map files
   class MapManager
     def self.load(level)
       file = File.open("#{__dir__}/maps/#{level}.lvl")

@@ -1,20 +1,24 @@
+# frozen_string_literal: true
+
 require_relative 'map_manager'
 
 module RKTheory
+  # Implements a simple 2D map along with rendering and valid positioning logic
   class Map
     attr_reader :grid
 
     def initialize(grid)
       @grid = grid
-      RKTheory::logger.info("Level size #{@grid.size}x#{@grid[0].size}")
+      RKTheory.logger.info("Level size #{@grid.size}x#{@grid[0].size}")
       @loading = true
     end
 
     def render(window)
       return unless @loading
+
       window.setpos(0, 0)
-      grid.each.with_index do |row, y|
-        row.each.with_index do |tile, x|
+      grid.each do |row|
+        row.each do |tile|
           tile.render(window)
           # Loading animation
           # if @loading
@@ -28,8 +32,10 @@ module RKTheory
 
     def valid?(pos)
       return false if pos.x < 0 || pos.y < 0
+
       return false if pos.x >= @grid[0].size || pos.y >= @grid.size
-      return grid[pos.y][pos.x].walkable?
+
+      grid[pos.y][pos.x].walkable?
     end
 
     def invalid?(pos)

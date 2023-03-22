@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
-require_relative "lib/r_k_theory/version"
+require_relative 'lib/r_k_theory/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "r_k_theory"
+  spec.name          = 'r_k_theory'
   spec.version       = RKTheory::VERSION
-  spec.authors       = ["João Soares"]
-  spec.email         = ["jsoaresgera@gmail.com"]
+  spec.authors       = ['João Soares']
+  spec.email         = ['jsoaresgera@gmail.com']
 
-  spec.summary       = "Simple terminal game to implement path finding algorithms"
-  spec.description   = <<-EOF
+  spec.summary       = 'Simple terminal game to implement path finding algorithms'
+  spec.description   = <<-DESC
     2D Terminal game where a bunny needs to find a carrot using pathfinding algorithms:
     - Flood finding
     - Dijkstra
     - A* (A-Star)
-  EOF
-  spec.homepage      = "http://rqtheory.gintechtonic.com"
-  spec.license       = "MIT"
-  spec.required_ruby_version = ">= 2.4.0"
+  DESC
+  spec.homepage      = 'http://rqtheory.gintechtonic.com'
+  spec.license       = 'MIT'
+  spec.required_ruby_version = '>= 2.4.0'
 
-  spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/jasoares/r_k_theory"
-  spec.metadata["changelog_uri"] = "https://github.com/jasoares/r_k_theory/blob/master/CHANGELOG.md"
+  spec.metadata['homepage_uri'] = spec.homepage
+  spec.metadata['source_code_uri'] = 'https://github.com/jasoares/r_k_theory'
+  spec.metadata['changelog_uri'] = 'https://github.com/jasoares/r_k_theory/blob/master/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -30,12 +30,12 @@ Gem::Specification.new do |spec|
       (f == __FILE__) || f.match(%r{\A(?:(?:test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})
     end
   end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.bindir        = 'bin'
+  spec.executables   = %w[console setup rktheory]
+  spec.require_paths = ['lib']
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "curses", "~> 1.2"
+  spec.add_dependency 'curses', '~> 1.2'
   spec.add_development_dependency 'pry', '~> 0.14'
 
   # For more information and examples about making a new gem, checkout our

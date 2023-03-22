@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module RKTheory
   class Tile
+    # Class that describes the wall tile an obstacle for walking
     class Wall < Tile
       def render(window)
-        window.attron(color_pair(2)) { window << 'W' }
+        window.attron(Curses.color_pair(2)) { window << 'W' }
       end
 
       def walkable?

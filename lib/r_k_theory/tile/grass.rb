@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 module RKTheory
   class Tile
+    # Class that describes the grass tile a clear path for walking
     class Grass < Tile
       def render(window)
-        window.attron(color_pair(1)) { window << '.' }
+        window.attron(Curses.color_pair(1)) { window << '.' }
       end
 
       def walkable?
