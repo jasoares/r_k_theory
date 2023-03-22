@@ -25,6 +25,7 @@ module RKTheory
       init_pair(1, Curses::COLOR_WHITE, Curses::COLOR_GREEN)
       init_pair(2, Curses::COLOR_BLACK, Curses::COLOR_YELLOW)
       init_pair(3, Curses::COLOR_BLACK, Curses::COLOR_WHITE)
+      init_pair(4, Curses::COLOR_GREEN, Curses::COLOR_RED)
     end
 
     def run

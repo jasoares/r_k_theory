@@ -4,8 +4,9 @@ module RKTheory
   class Tile
     require_relative 'tile/grass'
     require_relative 'tile/wall'
+    require_relative 'tile/carrot'
 
-    TYPES = { 'G' => Grass, 'W' => Wall }
+    TYPES = { 'G' => Grass, 'W' => Wall, 'T' => Carrot }
 
     attr_reader :position
 
