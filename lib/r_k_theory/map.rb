@@ -9,8 +9,15 @@ module RKTheory
 
     def initialize(grid)
       @grid = grid
-      RKTheory.logger.info("Level size #{@grid.size}x#{@grid[0].size}")
       @loading = true
+    end
+
+    def height
+      @grid.size
+    end
+
+    def width
+      @grid[0].size
     end
 
     def render(window)

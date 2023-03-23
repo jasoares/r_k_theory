@@ -30,14 +30,14 @@ module RKTheory
       window.setpos(@position.y, @position.x)
       window.attron(Curses.color_pair(3)) { window << '@' }
       # Loading animation
-      # 2.times do
+      # 5.times do
       #   window.refresh
       #   sleep 0.3
 
       #   window << "\b@"
       #   window.refresh
       #   sleep 0.3
-      #   window.attron(color_pair(3)) { window << "\b@" }
+      #   window.attron(Curses.color_pair(3)) { window << "\b@" }
       # end if @loading
       @loading = false
     end
