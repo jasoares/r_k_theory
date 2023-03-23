@@ -24,7 +24,7 @@ module RKTheory
 
     def render(window)
       window.setpos(@old_position.row, @old_position.col)
-      window.attron(Curses.color_pair(1)) { window << '.' }
+      window.attron(Curses.color_pair(5)) { window << '.' }
       window.setpos(@position.row, @position.col)
       window.attron(Curses.color_pair(3)) { window << '@' }
       # Loading animation
