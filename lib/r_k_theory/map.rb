@@ -5,10 +5,11 @@ require_relative 'map_manager'
 module RKTheory
   # Implements a simple 2D map along with rendering and valid positioning logic
   class Map
-    attr_reader :grid
+    attr_reader :grid, :goal_position
 
-    def initialize(grid)
+    def initialize(grid, goal_position)
       @grid = grid
+      @goal_position = goal_position
       @loading = true
     end
 

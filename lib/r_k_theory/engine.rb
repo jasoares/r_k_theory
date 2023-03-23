@@ -10,9 +10,10 @@ module RKTheory
   # Implements a simple game engine loop with hooks for game logic and rendering
   class Engine
     def initialize
-      @map = MapManager.load('level1')
+      @map_manager = MapManager.new('level1')
+      @map = @map_manager.map
+      @bunny = Bunny.new(@map_manager.player_position)
       @terminal = Terminal.new(@map.height, @map.width)
-      @bunny = Bunny.new(3, 2)
     end
 
     def run

@@ -9,8 +9,6 @@ module RKTheory
     require_relative 'tile/wall'
     require_relative 'tile/carrot'
 
-    TYPES = { 'G' => Grass, 'W' => Wall, 'T' => Carrot }.freeze
-
     attr_reader :position
 
     def initialize(x, y)

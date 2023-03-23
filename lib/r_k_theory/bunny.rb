@@ -3,10 +3,10 @@
 module RKTheory
   # Class describing the player
   class Bunny
-    def initialize(x, y)
+    def initialize(position)
       @loading = true
-      @position = Position.new(x, y)
-      @old_position = Position.new(x, y)
+      @position = position
+      @old_position = position
     end
 
     def tick(map)
