@@ -12,7 +12,7 @@ module RKTheory
     def initialize
       @map_manager = MapManager.new('level1')
       @map = @map_manager.map
-      @bunny = Bunny.new(@map_manager.player_position)
+      @bunny = Bunny.new(@map_manager.player_position, @map)
       @terminal = Terminal.new(@map.height, @map.width)
     end
 
@@ -33,7 +33,7 @@ module RKTheory
     end
 
     def tick
-      @bunny.tick(@map)
+      @bunny.tick
     end
 
     def render

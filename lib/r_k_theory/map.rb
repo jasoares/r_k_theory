@@ -39,11 +39,11 @@ module RKTheory
     end
 
     def valid?(pos)
-      return false if pos.x < 0 || pos.y < 0
+      return false if pos.row < 0 || pos.col < 0
 
-      return false if pos.x >= @grid[0].size || pos.y >= @grid.size
+      return false if pos.row >= @grid.size || pos.col >= @grid[0].size
 
-      grid[pos.y][pos.x].walkable?
+      grid[pos.row][pos.col].walkable?
     end
 
     def invalid?(pos)

@@ -1,33 +1,31 @@
 # frozen_string_literal: true
 
+require_relative 'path_finding'
+
 module RKTheory
   # Class describing the player
   class Bunny
-    def initialize(position)
+    def initialize(position, map)
       @loading = true
       @position = position
+      @map = map
+      @strategy = PathFinding::Random.new(@position, @map)
       @old_position = position
     end
 
-    def tick(map)
-      move(map)
+    def tick
+      move
     end
 
-    def move(map)
-      new_position = Position.new(-1, -1)
-      while map.invalid?(new_position)
-        delta_x = Random.rand(3).floor - 1
-        delta_y = Random.rand(3).floor - 1
-        new_position = Position.new(@position.x + delta_x, @position.y + delta_y)
-      end
+    def move
       @old_position = @position
-      @position = new_position
+      @position = @strategy.next_position
     end
 
     def render(window)
-      window.setpos(@old_position.y, @old_position.x)
+      window.setpos(@old_position.row, @old_position.col)
       window.attron(Curses.color_pair(1)) { window << '.' }
-      window.setpos(@position.y, @position.x)
+      window.setpos(@position.row, @position.col)
       window.attron(Curses.color_pair(3)) { window << '@' }
       # Loading animation
       # 5.times do
