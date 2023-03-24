@@ -44,7 +44,7 @@ module RKTheory
         let(:position_b) { described_class.new(0, 0) }
 
         it 'returns true' do
-          expect(position_a == position_b).to eq(true)
+          expect(position_a == position_b).to be(true)
         end
       end
 
@@ -53,7 +53,7 @@ module RKTheory
         let(:position_b) { described_class.new(2, 1) }
 
         it 'returns false' do
-          expect(position_a == position_b).to eq(false)
+          expect(position_a == position_b).to be(false)
         end
       end
     end
@@ -64,7 +64,7 @@ module RKTheory
         let(:position_b) { described_class.new(0, 0) }
 
         it 'returns true' do
-          expect(position_a.eql?(position_b)).to eq(true)
+          expect(position_a.eql?(position_b)).to be(true)
         end
       end
 
@@ -73,7 +73,7 @@ module RKTheory
         let(:position_b) { described_class.new(2, 1) }
 
         it 'returns false' do
-          expect(position_a.eql?(position_b)).to eq(false)
+          expect(position_a.eql?(position_b)).to be(false)
         end
       end
     end

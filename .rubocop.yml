@@ -12,6 +12,7 @@ Gemspec/RequireMFA: # new in 1.23
   Enabled: true
 Gemspec/RequiredRubyVersion:
   Enabled: false
+
 Layout/LineContinuationLeadingSpace: # new in 1.31
   Enabled: true
 Layout/LineContinuationSpacing: # new in 1.31
@@ -22,6 +23,7 @@ Layout/LineLength:
   Max: 120
 Layout/SpaceBeforeBrackets: # new in 1.7
   Enabled: true
+
 Lint/AmbiguousAssignment: # new in 1.7
   Enabled: true
 Lint/AmbiguousOperatorPrecedence: # new in 1.21
@@ -78,16 +80,20 @@ Lint/UselessRescue: # new in 1.43
   Enabled: true
 Lint/UselessRuby2Keywords: # new in 1.23
   Enabled: true
+
 Metrics/CollectionLiteralLength: # new in 1.47
   Enabled: true
+
 Naming/BlockForwarding: # new in 1.24
   Enabled: true
 Naming/MethodParameterName:
   Enabled: false
+
 Security/CompoundHash: # new in 1.28
   Enabled: true
 Security/IoMethods: # new in 1.22
   Enabled: true
+
 Style/ArgumentsForwarding: # new in 1.1
   Enabled: true
 Style/ArrayIntersect: # new in 1.40
@@ -184,3 +190,58 @@ Style/StringLiteralsInInterpolation:
   EnforcedStyle: single_quotes
 Style/SwapValues: # new in 1.1
   Enabled: true
+
+RSpec/BeEq: # new in 2.9.0
+  Enabled: true
+RSpec/BeNil: # new in 2.9.0
+  Enabled: true
+RSpec/ChangeByZero: # new in 2.11
+  Enabled: true
+RSpec/DuplicatedMetadata: # new in 2.16
+  Enabled: true
+RSpec/ExcessiveDocstringSpacing: # new in 2.5
+  Enabled: true
+RSpec/IdenticalEqualityAssertion: # new in 2.4
+  Enabled: true
+RSpec/NoExpectationExample: # new in 2.13
+  Enabled: true
+RSpec/PendingWithoutReason: # new in 2.16
+  Enabled: true
+RSpec/RedundantAround: # new in 2.19
+  Enabled: true
+RSpec/SkipBlockInsideExample: # new in 2.19
+  Enabled: true
+RSpec/SortMetadata: # new in 2.14
+  Enabled: true
+RSpec/SubjectDeclaration: # new in 2.5
+  Enabled: true
+RSpec/VerifiedDoubleReference: # new in 2.10.0
+  Enabled: true
+
+RSpec/FactoryBot/ConsistentParenthesesStyle: # new in 2.14
+  Enabled: false
+RSpec/FactoryBot/FactoryNameStyle: # new in 2.16
+  Enabled: false
+RSpec/FactoryBot/SyntaxMethods: # new in 2.7
+  Enabled: false
+RSpec/Rails/AvoidSetupHook: # new in 2.4
+  Enabled: false
+RSpec/Rails/HaveHttpStatus: # new in 2.12
+  Enabled: false
+RSpec/Rails/InferredSpecType: # new in 2.14
+  Enabled: false
+RSpec/Rails/MinitestAssertions: # new in 2.17
+  Enabled: false
+RSpec/Rails/TravelAround: # new in 2.19
+  Enabled: false
+
+Capybara/MatchStyle: # new in 2.17
+  Enabled: false
+Capybara/NegationMatcher: # new in 2.14
+  Enabled: false
+Capybara/SpecificActions: # new in 2.14
+  Enabled: false
+Capybara/SpecificFinders: # new in 2.13
+  Enabled: false
+Capybara/SpecificMatcher: # new in 2.12
+  Enabled: false
