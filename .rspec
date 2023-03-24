@@ -1,3 +1,4 @@
 --format documentation
+--force-color
 --color
 --require spec_helper
