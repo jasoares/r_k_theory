@@ -1,5 +1,8 @@
+require: rubocop-rspec
+
 AllCops:
   TargetRubyVersion: 3.2
+  SuggestExtensions: false
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true

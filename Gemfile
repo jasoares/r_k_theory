@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in r_k_theory.gemspec
+# Specify your gem's dependencies in rk_theory.gemspec
 gemspec
 
 gem 'rake', '~> 13.0'

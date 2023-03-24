@@ -17,7 +17,7 @@ module RKTheory
     def ==(other)
       self.class == other.class && [row, col] == [other.row, other.col]
     end
-    alias_method :eql?, :==
+    alias eql? ==
 
     def up
       self.class.new(row - 1, col)
@@ -38,6 +38,6 @@ module RKTheory
     def to_s
       "(#{row}, #{col})"
     end
-    alias_method :inspect, :to_s
+    alias inspect to_s
   end
 end

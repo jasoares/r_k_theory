@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'lib/r_k_theory/version'
+require_relative 'lib/rk_theory/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'r_k_theory'
+  spec.name          = 'rk_theory'
   spec.version       = RKTheory::VERSION
   spec.authors       = ['João Soares']
   spec.email         = ['jsoaresgera@gmail.com']
@@ -20,8 +20,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.7'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/jasoares/r_k_theory'
-  spec.metadata['changelog_uri'] = 'https://github.com/jasoares/r_k_theory/blob/master/CHANGELOG.md'
+  spec.metadata['source_code_uri'] = 'https://github.com/jasoares/rk_theory'
+  spec.metadata['changelog_uri'] = 'https://github.com/jasoares/rk_theory/blob/master/CHANGELOG.md'
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
@@ -37,6 +37,8 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   spec.add_dependency 'curses', '~> 1.2'
   spec.add_development_dependency 'pry', '~> 0.14'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.19'
+  spec.add_development_dependency 'simplecov', '~> 0.22'
 
   # For more information and examples about making a new gem, checkout our
   # guide at: https://bundler.io/guides/creating_gem.html

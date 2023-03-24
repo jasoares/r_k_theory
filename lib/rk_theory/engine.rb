@@ -17,16 +17,11 @@ module RKTheory
     end
 
     def run
-      last_step = (Time.now.to_f * 1000).to_i
       loop do
-        curr_step = (Time.now.to_f * 1000).to_i
-        if curr_step - last_step > 1000 / 60
-          last_step = curr_step
-          render
-          tick
-        else
-          sleep 0.05
-        end
+        sleep 0.1 if current_step - last_step < 1000 / 60
+        @last_step = current_step
+        render
+        tick
       end
     ensure
       @terminal.close
@@ -41,6 +36,16 @@ module RKTheory
         @map.render(window)
         @bunny.render(window)
       end
+    end
+
+    private
+
+    def last_step
+      @last_step ||= current_step
+    end
+
+    def current_step
+      (Time.now.to_f * 1000).to_i
     end
   end
 end

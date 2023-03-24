@@ -14,8 +14,8 @@ module RKTheory
   end
 end
 
-require 'r_k_theory/version'
-require 'r_k_theory/engine'
+require 'rk_theory/version'
+require 'rk_theory/engine'
 
 RKTheory.logger = Logger.new('rktheory.log')
 RKTheory.logger.level = Logger::WARN

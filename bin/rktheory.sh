@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 require "bundler/setup"
-require 'r_k_theory'
+require 'rk_theory'
 
 game = RKTheory::Engine.new
 game.run

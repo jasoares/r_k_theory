@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
-require 'r_k_theory'
+require 'simplecov'
+SimpleCov.start
+
+require 'rk_theory'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
