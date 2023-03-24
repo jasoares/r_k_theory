@@ -18,6 +18,11 @@ module RKTheory
     def walkable?
       raise "#{self.class.name} must implement Tile#walkable?"
     end
+
+    def eql?(other)
+      self.class == other.class && position == other.position
+    end
+    alias_method :==, :eql?
   end
 end
 

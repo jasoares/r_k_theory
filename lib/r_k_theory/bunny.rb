@@ -25,6 +25,7 @@ module RKTheory
     def render(window)
       window.setpos(@old_position.row, @old_position.col)
       window.attron(Curses.color_pair(5)) { window << '.' }
+      # window.attron(Curses.color_pair(5)) { window << "#{(@strategy.path.size % 10)}" } # debug path
       window.setpos(@position.row, @position.col)
       window.attron(Curses.color_pair(3)) { window << '@' }
       # Loading animation

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 module RKTheory
-	class PathFinding
+  class PathFinding
+    attr_reader :path
 
     def initialize(origin, map)
       @origin = origin
@@ -13,7 +14,7 @@ module RKTheory
     def next_position
       raise 'Must implement #next_position for any PathFinding algorithm' unless block_given?
       position = yield
-      @path << position
+      @path |= [position]
       @current_position = position
     end
   end
