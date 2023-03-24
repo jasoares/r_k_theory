@@ -23,16 +23,32 @@ module RKTheory
       self.class.new(row - 1, col)
     end
 
+    def up_right
+      self.class.new(row - 1, col + 1)
+    end
+
+    def right
+      self.class.new(row, col + 1)
+    end
+
+    def down_right
+      self.class.new(row + 1, col + 1)
+    end
+
     def down
       self.class.new(row + 1, col)
+    end
+
+    def down_left
+      self.class.new(row + 1, col - 1)
     end
 
     def left
       self.class.new(row, col - 1)
     end
 
-    def right
-      self.class.new(row, col + 1)
+    def up_left
+      self.class.new(row - 1, col - 1)
     end
 
     def to_s

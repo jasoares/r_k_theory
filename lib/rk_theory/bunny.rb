@@ -14,10 +14,6 @@ module RKTheory
     end
 
     def tick
-      move
-    end
-
-    def move
       @old_position = @position
       @position = @strategy.next_position
     end
