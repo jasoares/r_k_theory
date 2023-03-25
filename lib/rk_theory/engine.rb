@@ -9,6 +9,7 @@ require_relative 'tile'
 module RKTheory
   # Implements a simple game engine loop with hooks for game logic and rendering
   class Engine
+    SPEED = 10
     def initialize
       @map_manager = MapManager.new('level1')
       @map = @map_manager.map
@@ -17,18 +18,27 @@ module RKTheory
     end
 
     def run
-      loop do
-        sleep 0.1 if current_step - last_step < 1000 / 60
-        @last_step = current_step
+      accumulator = 0
+      while !@bunny.ate?
+        delta = current_step - last_step
         render
-        tick
+        if delta > 1000.0 / SPEED
+          gap = delta - 1000.0 / SPEED
+          accumulator += (delta - 1000.0 / SPEED)
+          RKTheory.logger.info("#{sprintf('%.4f', current_step)} | delta: #{sprintf('%.7f', delta)} | gap: #{sprintf('%.6f', gap)} | accumulator: #{sprintf('%.6f', accumulator)}")
+          @last_step = current_step
+          tick
+        end
+        @current_step = nil
       end
+      sleep
     ensure
       @terminal.close
     end
 
     def tick
       @bunny.tick
+      @bunny.ate?
     end
 
     def render
@@ -45,7 +55,7 @@ module RKTheory
     end
 
     def current_step
-      (Time.now.to_f * 1000).to_i
+      @current_step ||= Time.now.to_f * 1000
     end
   end
 end

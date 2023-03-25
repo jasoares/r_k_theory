@@ -11,11 +11,17 @@ module RKTheory
       @map = map
       @strategy = PathFinding::Random.new(@position, @map)
       @old_position = position
+      @ate = false
+    end
+
+    def ate?
+      !!@ate
     end
 
     def tick
       @old_position = @position
       @position = @strategy.next_position
+      @ate = @position == @map.goal_position
     end
 
     def render(window)

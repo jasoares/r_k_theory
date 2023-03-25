@@ -17,5 +17,5 @@ end
 require 'rk_theory/version'
 require 'rk_theory/engine'
 
-RKTheory.logger = Logger.new('rktheory.log')
-RKTheory.logger.level = Logger::WARN
+RKTheory.logger = Logger.new('rk_theory.log')
+RKTheory.logger.level = Logger::DEBUG
