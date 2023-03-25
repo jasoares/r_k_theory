@@ -13,6 +13,3 @@ require 'rk_theory'
 
 require 'irb'
 IRB.start(__FILE__)
-
-game = RKTheory::Engine.new
-game.run
