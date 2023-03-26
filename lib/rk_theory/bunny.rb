@@ -5,12 +5,16 @@ require_relative 'path_finding'
 module RKTheory
   # Class describing the player
   class Bunny
-    def initialize(position, map)
+    CHAR = 'B'
+
+    attr_reader :position
+
+    def initialize(row, col, map)
       @loading = true
-      @position = position
+      @position = Position.new(row, col)
       @map = map
       @strategy = PathFinding::Random.new(@position, @map)
-      @old_position = position
+      @old_position = @position
       @ate = false
     end
 
@@ -21,7 +25,7 @@ module RKTheory
     def tick
       @old_position = @position
       @position = @strategy.next_position
-      @ate = @position == @map.goal_position
+      @ate = @position == @map.goal.position
     end
 
     def render(window)

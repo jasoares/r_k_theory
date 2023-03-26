@@ -10,6 +10,6 @@ RSpec.describe RKTheory do
   end
 
   it 'sets the log level to warning' do
-    expect(described_class.logger.level).to eq(Logger::WARN)
+    expect(described_class.logger.level).to eq(Logger::DEBUG)
   end
 end

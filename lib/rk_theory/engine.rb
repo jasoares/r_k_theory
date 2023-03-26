@@ -11,9 +11,8 @@ module RKTheory
   class Engine
     SPEED = 10
     def initialize
-      @map_manager = MapManager.new('level1')
-      @map = @map_manager.map
-      @bunny = Bunny.new(@map_manager.player_position, @map)
+      @map = Map.from_file('level1')
+      @bunny = @map.player
       @terminal = Terminal.new(@map.height, @map.width)
     end
 

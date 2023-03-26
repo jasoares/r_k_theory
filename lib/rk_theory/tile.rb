@@ -1,14 +1,35 @@
 # frozen_string_literal: true
 
 require_relative 'position'
+require_relative 'tile/grass'
+require_relative 'tile/wall'
+require_relative 'tile/carrot'
 
 module RKTheory
   # Class that describes an abstract tile, used for subclassing other tiles
   class Tile
+    TYPES = {
+      'B' => Tile::Grass,
+      'G' => Tile::Grass,
+      'W' => Tile::Wall,
+      'T' => Tile::Carrot
+    }.freeze
+
+    class << self
+      def from_char(row, col, map, char)
+        TYPES[char].new(row, col, map)
+      end
+    end
+
     attr_reader :position
 
-    def initialize(row, col)
+    def initialize(row, col, map)
+      @map = map
       @position = Position.new(row, col)
+    end
+
+    def char
+      self.class::CHAR
     end
 
     def render(_window)
@@ -25,7 +46,3 @@ module RKTheory
     alias eql? ==
   end
 end
-
-require_relative 'tile/grass'
-require_relative 'tile/wall'
-require_relative 'tile/carrot'

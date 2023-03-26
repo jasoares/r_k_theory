@@ -217,6 +217,8 @@ RSpec/SubjectDeclaration: # new in 2.5
   Enabled: true
 RSpec/VerifiedDoubleReference: # new in 2.10.0
   Enabled: true
+RSpec/MessageSpies:
+  EnforcedStyle: 'receive'
 
 RSpec/FactoryBot/ConsistentParenthesesStyle: # new in 2.14
   Enabled: false

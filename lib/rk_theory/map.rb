@@ -1,31 +1,55 @@
 # frozen_string_literal: true
 
-require_relative 'map_manager'
+require_relative 'position'
+require_relative 'tile'
 
 module RKTheory
   # Implements a simple 2D map along with rendering and valid positioning logic
   class Map
-    attr_reader :grid, :goal_position
+    class << self
+      def from_file(filename)
+        file_path = "#{__dir__}/maps/#{filename}.lvl"
+        grid = File.open(file_path).readlines.map do |line|
+          line.chomp.chars.map do |char|
+            char
+          end
+        end
+        new(grid)
+      end
+    end
 
-    def initialize(grid, goal_position)
-      @grid = grid
-      @goal_position = goal_position
+    attr_reader :tilemap, :player
+
+    def initialize(grid)
+      @tilemap = grid.map.with_index do |chars, row|
+        chars.map.with_index do |char, col|
+          if char == Bunny::CHAR
+            @player = Bunny.new(row, col, self)
+            char = Tile::Grass::CHAR
+          end
+          Tile.from_char(row, col, self, char)
+        end
+      end
       @loading = true
     end
 
+    def goal
+      @goal ||= @tilemap.flatten.find { |tile| tile.instance_of?(Tile::Carrot) }
+    end
+
     def height
-      @grid.size
+      @tilemap.size
     end
 
     def width
-      @grid[0].size
+      @tilemap[0].size
     end
 
     def render(window)
       return unless @loading
 
       window.setpos(0, 0)
-      grid.each do |row|
+      tilemap.each do |row|
         row.each do |tile|
           tile.render(window)
           # Loading animation
@@ -41,9 +65,9 @@ module RKTheory
     def valid?(pos)
       return false if pos.row < 0 || pos.col < 0
 
-      return false if pos.row >= @grid.size || pos.col >= @grid[0].size
+      return false if pos.row >= @tilemap.size || pos.col >= @tilemap[0].size
 
-      grid[pos.row][pos.col].walkable?
+      tilemap[pos.row][pos.col].walkable?
     end
 
     def invalid?(pos)
