@@ -44,5 +44,14 @@ module RKTheory
       self.class == other.class && position == other.position
     end
     alias eql? ==
+
+    def hash
+      [position, self.class].hash
+    end
+
+    def to_s
+      "#<#{self.class}:#{(object_id << 1).to_s(16)} char=#{char} @position=#{position.inspect} walkable=#{walkable?}"
+    end
+    alias inspect to_s
   end
 end

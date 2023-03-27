@@ -57,21 +57,40 @@ module RKTheory
           #   window.refresh
           #   sleep 0.0001
           # end
+          # @loading = false
         end
       end
-      @loading = false
     end
+
+    def to_s
+      grid = tilemap.map do |line|
+        line.map(&:char).join
+      end.join("\n")
+      "#<#{self.class}:#{(object_id << 1).to_s(16)} @tilemap=\n#{grid}\n"
+    end
+    alias inspect to_s
 
     def valid?(pos)
       return false if pos.row < 0 || pos.col < 0
-
       return false if pos.row >= @tilemap.size || pos.col >= @tilemap[0].size
 
-      tilemap[pos.row][pos.col].walkable?
+      true
     end
 
-    def invalid?(pos)
-      !valid?(pos)
+    def valid_move?(from_pos, to_pos)
+      neighbour_positions(from_pos).include?(to_pos) && [from_pos, to_pos].all? { |pos| walkable?(pos) }
+    end
+
+    def walkable?(pos)
+      valid?(pos) && tilemap[pos.row][pos.col].walkable?
+    end
+
+    def [](row)
+      @tilemap[row]
+    end
+
+    def neighbour_positions(pos)
+      PathFinding::DIRECTIONS4.map { |dir| pos.send(dir) }.select { |new_pos| valid?(new_pos) }
     end
   end
 end

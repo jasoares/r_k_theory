@@ -3,7 +3,8 @@
 module RKTheory
   # Implements boilerplate code for multiple path finding algorithms and strategies
   class PathFinding
-    DIRECTIONS4 = %w[up down left right]
+    DIRECTIONS4 = %w[up down left right].freeze
+    DIRECTIONS8 = %w[up up_right right down_right down down_left left up_left].freeze
 
     attr_reader :path
 
@@ -22,13 +23,13 @@ module RKTheory
       @current_position = position
     end
 
-    def valid_options
-      DIRECTIONS4.map(&:to_sym).each_with_object({}) do |option, options|
-        option_position = @current_position.send(option)
-        options[option] = option_position if @map.valid?(option_position)
+    def neighbours(position)
+      @map.neighbour_positions(position).select do |neighbour|
+        @map.valid_move?(position, neighbour)
       end
     end
   end
 end
 
 require_relative 'path_finding/random'
+require_relative 'path_finding/flood_fill'
