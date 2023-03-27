@@ -4,18 +4,15 @@ module RKTheory
   class PathFinding
     # Implementation of a flood fill algorithm
     class FloodFill < PathFinding
-      attr_reader :path_found
-
       def initialize(origin, map)
         super
         @next_position = Hash.new(nil)
         @visited = Hash.new(false)
-        @path_found = false
       end
 
       def next_position
         super do
-          @next_position[@current_position]
+          next_position = @next_position[@current_position]
         end
       end
 

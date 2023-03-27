@@ -6,13 +6,14 @@ module RKTheory
     DIRECTIONS4 = %w[up down left right].freeze
     DIRECTIONS8 = %w[up up_right right down_right down down_left left up_left].freeze
 
-    attr_reader :path
+    attr_reader :path, :path_found
 
     def initialize(origin, map)
       @origin = origin
       @current_position = @origin
       @map = map
       @path = [@current_position]
+      @path_found = false
     end
 
     def next_position

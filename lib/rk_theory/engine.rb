@@ -12,12 +12,12 @@ module RKTheory
     SPEED = 20
     def initialize
       @map = Map.from_file('level0')
-      @bunny = @map.player
+      @players = @map.players
       @terminal = Terminal.new(@map.height, @map.width)
     end
 
     def run
-      until @bunny.ate?
+      until @players.all?(&:ate?)
         delta = current_step - last_step
         if delta > (1000.0 / SPEED)
           @last_step = current_step
@@ -32,9 +32,9 @@ module RKTheory
     def step
       @terminal.render do |window|
         @map.render(window)
-        @bunny.render(window)
+        @players.map { |p| p.render(window) }
       end
-      @bunny.tick
+      @players.map(&:tick)
     end
 
     private

@@ -18,13 +18,13 @@ module RKTheory
       end
     end
 
-    attr_reader :tilemap, :player
+    attr_reader :tilemap, :players
 
     def initialize(grid)
       @tilemap = grid.map.with_index do |chars, row|
         chars.map.with_index do |char, col|
           if char == Bunny::CHAR
-            @player = Bunny.new(row, col, self)
+            @players = [Bunny.new(row, col, self, PathFinding::Random), Bunny.new(row, col, self, PathFinding::FloodFill)]
             char = Tile::Grass::CHAR
           end
           Tile.from_char(row, col, self, char)

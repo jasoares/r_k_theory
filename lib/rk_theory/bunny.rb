@@ -9,11 +9,11 @@ module RKTheory
 
     attr_reader :position, :strategy
 
-    def initialize(row, col, map)
+    def initialize(row, col, map, strategy=PathFinding::FloodFill)
       @loading = true
       @position = Position.new(row, col)
       @map = map
-      @strategy = PathFinding::FloodFill.new(@position, @map)
+      @strategy = strategy.new(@position, @map)
       @old_position = @position
       @invalid_positions = []
       @ate = false
@@ -30,6 +30,8 @@ module RKTheory
         @position = new_position
         @ate = @position == @map.goal.position
       else
+        return if new_position.nil?
+
         @invalid_positions << new_position
       end
     end

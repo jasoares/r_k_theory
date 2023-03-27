@@ -5,6 +5,11 @@ module RKTheory
     # Implementation of a random movement algorithm that naively avoids walking
     # the same tiles twice.
     class Random < PathFinding
+      def initialize(origin, map)
+        super
+        @path_found = true
+      end
+
       def next_position
         super do
           neighbours(@current_position).shuffle.find.with_index do |option, idx|
