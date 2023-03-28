@@ -2,6 +2,7 @@
 
 require_relative 'position'
 require_relative 'tile/grass'
+require_relative 'tile/forest'
 require_relative 'tile/wall'
 require_relative 'tile/carrot'
 
@@ -11,6 +12,7 @@ module RKTheory
     TYPES = {
       'B' => Tile::Grass,
       'G' => Tile::Grass,
+      'F' => Tile::Forest,
       'W' => Tile::Wall,
       'T' => Tile::Carrot
     }.freeze
@@ -21,15 +23,16 @@ module RKTheory
       end
     end
 
-    attr_reader :position
+    attr_reader :position, :cost
 
-    def initialize(row, col, map)
+    def initialize(row, col, map, cost=1)
       @map = map
       @position = Position.new(row, col)
+      @cost = cost
     end
 
     def char
-      self.class::CHAR
+      self.class::RENDER_CHAR
     end
 
     def render(_window)

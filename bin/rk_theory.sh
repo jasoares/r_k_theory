@@ -4,5 +4,5 @@
 require "bundler/setup"
 require 'rk_theory'
 
-game = RKTheory::Engine.new
+game = RKTheory::Engine.new('level3', RKTheory::PathFinding::Dijkstra)
 game.run

@@ -49,14 +49,14 @@ module RKTheory
       end
     end
 
-    describe '#player' do
+    describe '#player_position' do
       context "with the following 2D grid \n#{level}" do
         it 'returns an instance of Bunny' do
-          expect(map.player).to be_an_instance_of(Bunny)
+          expect(map.player_position).to be_an_instance_of(Position)
         end
 
         it 'has a postion of (2, 2)' do
-          expect(map.player.position).to eq(Position.new(2, 2))
+          expect(map.player_position).to eq(Position.new(2, 2))
         end
       end
     end

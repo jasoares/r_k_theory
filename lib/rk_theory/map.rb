@@ -18,14 +18,14 @@ module RKTheory
       end
     end
 
-    attr_reader :tilemap, :players
+    attr_reader :tilemap, :player_position
 
     def initialize(grid)
       @tilemap = grid.map.with_index do |chars, row|
         chars.map.with_index do |char, col|
-          if char == Bunny::CHAR
-            @players = [Bunny.new(row, col, self, PathFinding::Random), Bunny.new(row, col, self, PathFinding::FloodFill)]
-            char = Tile::Grass::CHAR
+          if char == Bunny::MAP_CHAR
+            @player_position = Position.new(row, col)
+            char = Tile::Grass::MAP_CHAR
           end
           Tile.from_char(row, col, self, char)
         end

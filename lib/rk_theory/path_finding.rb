@@ -10,18 +10,14 @@ module RKTheory
 
     def initialize(origin, map)
       @origin = origin
-      @current_position = @origin
       @map = map
-      @path = [@current_position]
       @path_found = false
     end
 
-    def next_position
+    def next_position(current_position)
       raise 'Must implement #next_position for any PathFinding algorithm' unless block_given?
 
-      position = yield
-      @path |= [position]
-      @current_position = position
+      yield
     end
 
     def neighbours(position)
@@ -34,3 +30,5 @@ end
 
 require_relative 'path_finding/random'
 require_relative 'path_finding/flood_fill'
+require_relative 'priority_queue'
+require_relative 'path_finding/dijkstra'

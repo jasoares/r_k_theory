@@ -10,10 +10,10 @@ module RKTheory
         @path_found = true
       end
 
-      def next_position
+      def next_position(current_position)
         super do
-          neighbours(@current_position).shuffle.find.with_index do |option, idx|
-            next true if idx == neighbours(@current_position).size - 1
+          neighbours(current_position).shuffle.find.with_index do |option, idx|
+            next true if idx == neighbours(current_position).size - 1
             next true unless path.include?(option)
 
             false

@@ -5,40 +5,62 @@ require_relative 'path_finding'
 module RKTheory
   # Class describing the player
   class Bunny
-    CHAR = 'B'
+    MAP_CHAR = 'B'
+    RENDER_CHAR = '@'
 
     attr_reader :position, :strategy
 
-    def initialize(row, col, map, strategy=PathFinding::FloodFill)
+    def initialize(position, map, strategy=PathFinding::FloodFill)
       @loading = true
-      @position = Position.new(row, col)
+      @position = position
+      @search_position
       @map = map
-      @strategy = strategy.new(@position, @map)
-      @old_position = @position
+      @algorithm = strategy
+      @prev_position = @position
       @invalid_positions = []
       @ate = false
+    end
+
+    def path_found?
+      @strategy.path_found
     end
 
     def ate?
       !!@ate
     end
 
-    def tick
-      new_position = @strategy.next_position
-      if @map.valid_move?(@position, new_position)
-        @old_position = @position
-        @position = new_position
-        @ate = @position == @map.goal.position
-      else
-        return if new_position.nil?
+    def iterate_search
+      @strategy ||= @algorithm.new(@position, @map)
+      @search_position = @strategy.iterate_search
+    end
 
-        @invalid_positions << new_position
+    def render_path_finding(window)
+      return unless @search_position
+
+      window.setpos(@search_position.row, @search_position.col)
+      if @algorithm == PathFinding::Dijkstra
+        window.attron(Curses.color_pair(5)) { window << (@strategy.cost_to_reach[@search_position] % 10).to_s }
+      else
+        window.attron(Curses.color_pair(4)) { window << '*' }
       end
     end
 
-    def render(window)
-      window.setpos(@old_position.row, @old_position.col)
-      window.attron(Curses.color_pair(5)) { window << '.' }
+    def iterate_move
+      new_position = @strategy.next_position(@position)
+      if @map.valid_move?(@position, new_position)
+        @prev_position = @position
+        @position = new_position
+        @ate = @position == @map.goal.position
+      else
+        RKTheory.logger.warn "Invalid position returned by strategy #{new_position} for #{@position}"
+        @invalid_positions << new_position
+        RKTheory.logger.warn "Invalid positions so far #{@invalid_positions}"
+      end
+    end
+
+    def render_path_walking(window)
+      window.setpos(@prev_position.row, @prev_position.col)
+      window.attron(Curses.color_pair(5)) { window << @map[@prev_position.row][@prev_position.col].char }
       # window.attron(Curses.color_pair(5)) { window << "#{(@strategy.path.size % 10)}" } # debug path
       window.setpos(@position.row, @position.col)
       window.attron(Curses.color_pair(3)) { window << '@' }
@@ -54,7 +76,6 @@ module RKTheory
       #   window.attron(Curses.color_pair(3)) { window << "\b@" }
       # end if @loading
       @loading = false
-      @strategy.render_find_path(window) unless @strategy.path_found
     end
 
     def render_invalid_positions(window)

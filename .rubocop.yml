@@ -160,6 +160,8 @@ Style/OpenStructUse: # new in 1.23
   Enabled: true
 Style/OperatorMethodCall: # new in 1.37
   Enabled: true
+Style/ParallelAssignment:
+  Enabled: false
 Style/QuotedSymbols: # new in 1.16
   Enabled: true
 Style/RedundantArgument: # new in 1.4
