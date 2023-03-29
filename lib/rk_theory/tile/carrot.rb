@@ -8,7 +8,7 @@ module RKTheory
       RENDER_CHAR = 'T'
 
       def render(window)
-        window.attron(Curses.color_pair(4)) { window << 'T' }
+        window.attron(Curses.color_pair(4)) { window << RENDER_CHAR }
       end
 
       def walkable?

@@ -11,9 +11,9 @@ module RKTheory
   class Tile
     TYPES = {
       'B' => Tile::Grass,
-      'G' => Tile::Grass,
-      'F' => Tile::Forest,
-      'W' => Tile::Wall,
+      '_' => Tile::Grass,
+      ';' => Tile::Forest,
+      'X' => Tile::Wall,
       'T' => Tile::Carrot
     }.freeze
 

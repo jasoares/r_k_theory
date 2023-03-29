@@ -4,22 +4,22 @@
 module RKTheory
   RSpec.describe Map do
     level = <<~FILE
-      GWGWGG
-      GWGGGW
-      GGBWWW
-      WGWGWW
-      WGGGGT
-      WWWWWW
+      _X_X__
+      _X___X
+      __BXXX
+      X_X_XX
+      X____T
+      XXXXXX
     FILE
 
     let(:grid) do
       [
-        %w[G W G W G G],
-        %w[G W G G G W],
-        %w[G G B W W W],
-        %w[W G W G W W],
-        %w[W G G G G T],
-        %w[W W W W W W]
+        %w[_ X _ X _ _],
+        %w[_ X _ _ _ X],
+        %w[_ _ B X X X],
+        %w[X _ X _ X X],
+        %w[X _ _ _ _ T],
+        %w[X X X X X X]
       ]
     end
     let(:t) do

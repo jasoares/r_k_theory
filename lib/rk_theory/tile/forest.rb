@@ -12,7 +12,7 @@ module RKTheory
       end
 
       def render(window)
-        window.attron(Curses.color_pair(1)) { window << ';' }
+        window.attron(Curses.color_pair(1)) { window << RENDER_CHAR }
       end
 
       def walkable?
